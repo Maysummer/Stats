@@ -7,10 +7,10 @@ const matches = fs
     return row.split(',');
   });
 
-  const MatchResult = {
-    HomeWin: 'H',
-    AwayWin: 'A',
-    Draw: 'D'
+  enum MatchResult {
+    HomeWin = 'H',
+    AwayWin = 'A',
+    Draw = 'D'
   }
 
 //find how many times man united wins
