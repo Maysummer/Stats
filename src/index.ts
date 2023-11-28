@@ -1,14 +1,10 @@
 import { CSVFileReader } from './CSVFileReader';
+import { MatchResult } from './MatchResult';
 
 const reader = new CSVFileReader('football.csv');
 reader.read();
 
-enum MatchResult {
-  HomeWin = 'H',
-  AwayWin = 'A',
-  Draw = 'D',
-}
-
+console.log(reader.data[0][0])
 //find how many times man united wins
 let manUnitedWins = 0;
 
