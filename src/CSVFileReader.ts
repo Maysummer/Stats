@@ -1,8 +1,4 @@
 import fs from 'fs';
-import { MatchResult } from './MatchResult';
-
-//tuple
-type MatchData = [Date, string, string, number, number, MatchResult, string];
 
 export abstract class CSVFileReader<T> {
   data: T[] = [];
