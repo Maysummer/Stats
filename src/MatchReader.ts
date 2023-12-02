@@ -2,7 +2,7 @@ import { dateStringToDate } from './utils';
 import { MatchResult } from './MatchResult';
 
 //tuple
-type MatchData = [Date, string, string, number, number, MatchResult, string]
+type MatchData = [Date, string, string, number, number, MatchResult, string];
 
 interface DataReader {
   read(): void;
@@ -10,17 +10,22 @@ interface DataReader {
 }
 
 export class MatchReader {
-  constructor(public reader: DataReader){}
+  matches: MatchData[] = [];
 
-  // .map((row: string[]): MatchData => {
-  //   return [
-  //     dateStringToDate(row[0]),
-  //     row[1],
-  //     row[2],
-  //     parseInt(row[3]),
-  //     parseInt(row[4]),
-  //     row[5] as MatchResult, //type assertion - make sure its one of the MatchResult values
-  //     row[6],
-  //   ];
-  // });
+  constructor(public reader: DataReader) {}
+
+  load(): void {
+    this.reader.read();
+    this.matches = this.reader.data.map((row: string[]): MatchData => {
+      return [
+        dateStringToDate(row[0]),
+        row[1],
+        row[2],
+        parseInt(row[3]),
+        parseInt(row[4]),
+        row[5] as MatchResult, //type assertion - make sure its one of the MatchResult values
+        row[6],
+      ];
+    });
+  }
 }
